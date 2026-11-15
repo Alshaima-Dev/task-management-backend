@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f6f7fb" />
+    <title>Taskspace — Task Management</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/script.js" defer></script>
+  </head>
+  <body>
+    <div id="deletion-toast" class="deletion-toast" role="status" aria-live="polite" aria-atomic="true"></div>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Taskspace home"><span class="brand-icon" aria-hidden="true">✓</span> Taskspace</a>
+      <p class="sidebar-caption">YOUR WORKSPACE</p>
+      <nav class="sidebar-nav" aria-label="Workspace navigation">
+        <a href="#main-content"><span aria-hidden="true">▦</span> Overview</a>
+        <a href="#tasks-heading"><span aria-hidden="true">✓</span> Tasks</a>
+        <a href="#people-heading"><span aria-hidden="true">♧</span> People</a>
+        <a href="#create-heading"><span aria-hidden="true">＋</span> Create task</a>
+      </nav>
+      <div class="sidebar-note"><span class="note-mark" aria-hidden="true">✦</span><strong>One task at a time.</strong><p>A little clarity. A lot of progress.</p></div>
+    </header>
+    <main id="main-content" tabindex="-1">
+      <section class="page-heading" aria-labelledby="page-title">
+        <div><p class="eyebrow">YOUR WORK, ORGANIZED</p><h1 id="page-title">Welcome to your workspace.</h1><p class="subtitle">A clear view of your people, priorities, and progress.</p></div>
+        <button id="refresh" class="button secondary" type="button">↻ Refresh</button>
+      </section>
+      <div id="feedback" class="feedback" role="status" aria-live="polite" aria-atomic="true" hidden></div>
+      <section class="stats" aria-label="Task overview">
+        <div class="stat"><span>Total tasks</span><strong id="total-count">—</strong></div>
+        <div class="stat"><span>In progress</span><strong id="pending-count">—</strong></div>
+        <div class="stat"><span>Completed</span><strong id="completed-count">—</strong></div>
+      </section>
+      <div class="workspace">
+        <section class="panel task-panel" aria-labelledby="tasks-heading">
+          <div class="panel-heading"><div><h2 id="tasks-heading" tabindex="-1">Your tasks</h2><p>Small steps, meaningful results.</p></div><span class="label">TASK BOARD</span></div>
+          <div class="task-toolbar">
+            <div><label for="task-search">Search tasks</label><input id="task-search" type="search" placeholder="Search titles or people…" aria-describedby="task-search-help" /></div>
+            <div><label for="task-filter">Status</label><select id="task-filter"><option value="all">All tasks</option><option value="pending">In progress</option><option value="completed">Completed</option></select></div>
+          </div>
+          <p id="task-search-help" class="field-help">Find tasks by title or assigned person's name.</p>
+          <p id="task-results" class="results-note" role="status" aria-live="polite"></p>
+          <p id="task-state" class="empty-state" role="status">Loading your tasks…</p>
+          <ul id="task-list" class="task-list" aria-label="Tasks" aria-busy="true"></ul>
+        </section>
+        <aside class="sidebar" aria-label="Task tools">
+          <section class="panel" aria-labelledby="create-heading">
+            <div class="panel-heading"><div><h2 id="create-heading">Create a task</h2><p>Give your next step a home.</p></div></div>
+            <form id="create-form">
+              <label for="title">Task title</label>
+              <input id="title" name="title" placeholder="What needs to get done?" required />
+              <label for="assignee-search">Find a person</label>
+              <input id="assignee-search" type="search" placeholder="Search people by name…" aria-describedby="assignee-help" />
+              <p id="assignee-help" class="field-help">Filter by name, then choose a person below.</p>
+              <label for="user">Assign to</label>
+              <select id="user" name="userId" required disabled><option value="">Loading people…</option></select>
+              <button id="create-button" class="button primary full-width" type="submit" disabled>Create task <span aria-hidden="true">＋</span></button>
+            </form>
+          </section>
+          <section class="panel people-panel" aria-labelledby="people-heading">
+            <div class="panel-heading"><div><h2 id="people-heading">Your people</h2><p>A shared space to get things done.</p></div></div>
+            <button id="add-person" class="button secondary full-width" type="button" aria-expanded="false" aria-controls="person-form">Add Person <span aria-hidden="true">＋</span></button>
+            <form id="person-form" class="person-form" hidden>
+              <label for="person-name">Name</label>
+              <input id="person-name" name="name" autocomplete="name" placeholder="Enter a person's name" required />
+              <div class="person-actions"><button id="save-person" class="button primary" type="submit">Save person</button><button id="cancel-person" class="button secondary" type="button">Cancel</button></div>
+            </form>
+            <label for="people-search">Search people</label><input id="people-search" type="search" placeholder="Filter by name…" />
+            <p id="users-state" class="muted" role="status" aria-live="polite">Loading people…</p><ul id="user-list" class="user-list" aria-label="Available users"></ul>
+          </section>
+        </aside>
+      </div>
+      <footer>One task at a time.</footer>
+    </main>
+  </body>
+</html>
