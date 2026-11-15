@@ -1,0 +1,21 @@
+node_modules/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# OS temporary files
+.DS_Store
+._*
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Editor temporary files
+*.swp
+*.swo
+*~
+*.tmp
+.~lock.*#
+.vscode/
